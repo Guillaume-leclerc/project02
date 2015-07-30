@@ -1,0 +1,513 @@
+body, html{
+    margin: 0;
+    background-image: url('../img/fond-site.jpg');
+}
+
+header{
+    width: 100%;
+    height: 120px;
+}
+
+.container{
+    width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header div a{
+    display: block;
+    width: 163px;
+    height: 115px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+}
+
+.zoneMenu{
+    display: block;
+    width: 1056px;
+    height: 75px;
+    background-image: url('../img/zone-menu.png');
+    background-repeat: no-repeat;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 16px;
+}
+
+.menu{
+    display: block;
+    width: 1021px;
+    height: 42px;
+    background-color: #fc730e;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.menuPrincipal{
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+
+.menuPrincipal li{
+    list-style-type: none;
+    float: left;
+    text-align: center;
+}
+
+.menuPrincipal li a{
+    display: block;
+    width: 200px;
+    margin-left: 4px;
+    color: #ffffff;
+    font-size: 1.4em;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 42px;
+}
+
+.menuPrincipal li a:hover{
+    display: block;
+    width: 200px;
+    height: 42px;
+    background-color: #d75b00;
+}
+
+.sousMenuPrincipal{
+
+}
+
+.niveauInfSousMenu{
+    display: none;
+}
+
+.sousMenuPrincipal:hover .niveauInfSousMenu{
+    display: block;
+    width: 500px;
+    height: 150px;
+    background-color: #313131;
+    opacity: 0.5;
+    position: relative;
+}
+
+.zoneSlider{
+    width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.trait2px{
+    width: 100%;
+    height: 2px;
+    background-color: #fc730e;
+}
+
+.trait4pxOrange{
+    width: 100%;
+    height: 4px;
+    background-color: #fc730e;
+}
+
+footer{
+    width: 100%;
+    height: 150px;
+    background-color: #313131;
+}
+
+.blocFull200{
+    width: 100%;
+    height: 200px;
+    background-color: #fc730e;
+    padding-top: 10px;
+    margin-top: 50px;
+}
+
+.priorite{
+    width: 1024px;
+    height: 200px;
+    background-image: url('../img/footer.png');
+    background-repeat: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.blocPrioriteleft{
+    width: 250px;
+    height: 60px;
+    float: left;
+    margin-left: 6px;
+    margin-top: 125px;
+    text-align: center;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.blocPrioriteleft h3{
+    margin-top: 10px !important;
+    margin-bottom: 0px;
+    font-weight: 500;
+}
+
+.blocPrioriteleft p{
+    margin-top: 0px !important;
+    font-size: 0.8em;
+}
+
+.blocPrioriteMiddle{
+    width: 250px;
+    height: 60px;
+    float: left;
+    margin-left: 4px;
+    margin-top: 125px;
+    text-align: center;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.blocPrioriteMiddle h3{
+    margin-top: 15px !important;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+
+
+.bloc1024x200{
+    width: 1024px;
+    height: 200px;
+    background-color: #fc730e;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+}
+
+.titre1{
+    display: block;
+    width: 45%;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #ffffff;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    background-color: #fc730e;
+    z-index: 2;
+}
+
+.marginTop20{
+    margin-top: 20px;
+}
+
+.paddingTop10{
+    padding-top: 10px;
+}
+
+.blocTitre{
+    width: 40%;
+    height: 30px;
+    background-color: deepskyblue;
+    position: relative;
+    z-index: 2;
+}
+
+.hrTitre{
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: #ffffff;
+    border: none;
+    margin-top: -15px;
+    z-index: 1;
+    position: relative;
+}
+
+.h31{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #313131;
+    font-size: 1.8em;
+    margin: 0;
+}
+
+.blocProduit{
+    width: 176px;
+    height: 176px;
+    float: left;
+    border: 2px solid #fc730e;
+    background-color: #ffffff;
+    margin-top: 20px;
+}
+
+.blocProduitMargin{
+    width: 176px;
+    height: 176px;
+    float: left;
+    border: 2px solid #fc730e;
+    background-color: #ffffff;
+    margin-left: 31px;
+    margin-top: 20px;
+}
+
+.clear{
+    clear: both;
+}
+
+.traitBlanc{
+    width: 90%;
+    height: 4px;
+    background-color: #ffffff;
+}
+
+.blocLeft510x300_border{
+    display: block;
+    width: 510px;
+    height: 300px;
+    border-right: 2px solid #fc730e;
+    float: left;
+    margin-left: 0;
+}
+
+.blocLeft510x300{
+    display: block;
+    width: 510px;
+    height: 300px;
+    float: left;
+    margin-left: 0;
+}
+
+.titreH1{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fc730e;
+
+}
+
+.titreH3{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fc730e;
+    font-weight: 500;
+}
+
+.formConnexion{
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.formConnexionLabel{
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #666666;
+}
+
+.formConnexionInput{
+    width: 298px;
+    border: 1px solid #dddddd;
+    height: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8em;
+    color: #666666;
+    font-weight: 900;
+    margin-top: 10px;
+}
+
+.formConnexionBtnValid{
+    display: block;
+    border: 1px solid #d75b00;
+    width: 300px;
+    height: 32px;
+    margin-top: 25px;
+    color: #ffffff;
+    background-color: #fc730e;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8em;
+}
+
+.formConnexionBtnValid:hover{
+    background-color: #d75b00;
+}
+
+.text01{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 10px;
+    text-align: justify;
+    color: #666666;
+}
+
+.btnLienInscription{
+    display: block;
+    width: 300px;
+    height: 30px;
+    margin-top: 105px;
+    line-height: 30px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #d75b00;
+    background-color: #fc730e;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    font-size: 0.8em;
+}
+
+.btnLienInscription:hover{
+    background-color: #d75b00;
+}
+
+.formConnexion a{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #666666;
+    font-size: 0.7em;
+}
+
+.formInscription label{
+    display: block;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333333;
+}
+
+.formInscriptionInput{
+    display: block;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #666666;
+    font-size: 0.8em;
+    font-weight: 700;
+}
+
+.formInscriptionCivilite{
+    display: block;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.formInscriptionLabelDate{
+    display: inline-block; !important;
+    width: 33.3% !important;
+    float: left;
+    text-align: center;
+    margin-top: 7px !important;
+}
+
+.formInscriptionBlocLabelDate{
+    display: block;
+    width: 80%;
+    line-height: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.formInscriptionSelectDate{
+    display: block;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+.formInscriptionSelectDate select{
+    display: block;
+    width: 33.3%;
+    float: left;
+    text-align: center;
+}
+
+.blocLeftFormInscription{
+    display: block;
+    width: 512px;
+    height: 400px;
+    float: left;
+}
+
+.blocRightFormInscription{
+    display: block;
+    width: 512px;
+    height: 400px;
+    float: left;
+}
+
+.btnValidFormInscription{
+    display: block;
+    width: 91%;
+    height: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    background-color: #fc730e;
+    border: 1px solid #d75b00;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8em;
+}
+
+.btnValidFormInscription:hover{
+    background-color: #d75b00;
+}
+
+.success{
+    width: 1000px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    color: #3c763d;
+    text-align: center;
+    background-color: #dff0d8;
+    border: 1px solid #3c763d;
+    border-radius: 5px;
+}
+
+.alert{
+    width: 1000px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    color: #a9445d;
+    text-align: center;
+    background-color: #f2dede;
+    border: 1px solid #a9445d;
+    border-radius: 5px;
+}
+
+.warning{
+    width: 1000px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    color: #8a6d3b;
+    text-align: center;
+    background-color: #fcf8e3;
+    border: 1px solid #8a6d3b;
+    border-radius: 5px;
+}

@@ -1,0 +1,6 @@
+Options +FollowSymlinks
+RewriteEngine on
+RewriteBase /
+
+RewriteRule ^([a-zA-Z0-9]+)$ routeur.php?c=site&a=$1
+RewriteRule ^([a-zA-Z0-9]+)/([a-zA-Z0-9-]+)$ routeur.php?c=$1&a=$2
