@@ -12,12 +12,53 @@ namespace controllers\membreController{
     use models\membreModel\membreModel;
 
     class membreController extends superController{
-
+        //**********************************************************************************
         public function connexion(){
             $this->start();
 
-            if(isset($_POST['btnFormConnexion']) && $_POST['btnFormConnexion'] == 'Connexion'){
-                // faire le test id + Mdp
+            // Si le formulaire de connexion a été valider alors:
+            if(isset($_POST['bntFormConnexion']) && $_POST['bntFormConnexion'] == 'Connexion'){
+                include('..' . DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARATOR . 'membreModel.php');
+                // je crée l'objet membreModel et je requete avec l'adresse email en argument
+                $objMembreModel = new membreModel();
+                $result = $objMembreModel->selectMembreByMail($_POST['email']);
+
+                // Si un resultat est renvoyer alors je passe au traitement de la données
+                if($result){
+
+                    // Je concatène mon grain de sel a mon password puis je hash le tous
+                    $salt = "92831bca88ed1e80b8e3ac8f76bdaa9309e6f089";
+                    $chaine = $salt . $_POST['password'];
+
+                    $hash = sha1($chaine);
+
+                    // Si le pass enregistrer en bdd est identique a la variable $hash alors je charge la session
+                    if($result[0]['password'] == $hash){
+
+                        $_SESSION['user'] = array(
+                            'id_membre' => $result[0]['id_membre'],
+                            'civilite' => $result[0]['civilite'],
+                            'nom' => $result[0]['nom'],
+                            'prenom' => $result[0]['prenom'],
+                            'email' => $result[0]['email'],
+                            'adresse' => $result[0]['adresse'],
+                            'cp' => $result[0]['cp'],
+                            'ville' => $result[0]['ville'],
+                            'date_naissance' => $result[0]['date_naissance']
+                        );
+
+                        $msg = "Bienvenue " . $_SESSION['user']['prenom'] . " !";
+                        $this->setMsg($msg, 'success');
+                    }else{
+                        $msg = "Mot de passe incorrect!";
+                        $this->setMsg($msg, 'alert');
+                    }
+
+                }else{
+                    echo 'result envoi false';
+                    $msg = "Email innexistant";
+                    $this->setMsg($msg, 'alert');
+                }
             }
 
             $tab = array(
@@ -27,7 +68,7 @@ namespace controllers\membreController{
 
             $this->render($tab);
         }
-
+        //**********************************************************************************
         public function compte(){
             $this->start();
 
@@ -38,7 +79,7 @@ namespace controllers\membreController{
 
             $this->render($tab);
         }
-
+        //**********************************************************************************
         public function inscription(){
             $this->start();
 
@@ -79,8 +120,6 @@ namespace controllers\membreController{
                                                 $ville = htmlentities($_POST['ville'], ENT_QUOTES);
                                                 $cp = intval($_POST['cp']);
                                                 $date = intval($_POST['annee_naissance']) . '-' . intval($_POST['moi_naissance']) . '-' . intval($_POST['jour_naissance']);
-
-                                                echo 'Is goos beacch !';
 
                                                 $membre = array(
                                                     'civilite' => $civilite,
@@ -147,5 +186,6 @@ namespace controllers\membreController{
             $this->render($tab);
 
         }
+        //**********************************************************************************
     }
 }

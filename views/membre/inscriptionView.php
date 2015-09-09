@@ -2,7 +2,7 @@
     <div class="container">
         <h1 class="titreH1">Créez votre compte sur equip-quad</h1>
         <div class="trait2px"></div>
-        <form action="<?php /*echo 'http://localhost/quad/public/routeur.php?c=membre&a=inscription';*/  ?>" method="post" class="formInscription">
+        <form action="<?php echo 'http://localhost/quad/public/routeur.php?c=membre&a=inscription';  ?>" method="post" class="formInscription">
             <div class="blocLeftFormInscription">
                 <label for="civilite">Civilité</label>
                 <select name="civilite" id="civilite" class="formInscriptionCivilite">

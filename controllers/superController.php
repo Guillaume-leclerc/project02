@@ -9,7 +9,8 @@
 namespace controllers\superController{
     class superController{
 
-        const URL = 'http://www.equip-quad.gldev.fr/';
+        //const URL = 'http://www.equip-quad.gldev.fr/';
+        const URL = 'http://localhost/quad/public/';
 
         protected function render($tab){
             extract($tab); // Extraction du tableau
@@ -25,7 +26,9 @@ namespace controllers\superController{
             session_start();
 
             $_SESSION = array(
-                'msg' => ''
+                'msg' => '',
+                'user' => '',
+                'panier' => ''
             );
 
         }
@@ -34,17 +37,12 @@ namespace controllers\superController{
         public function setMsg($msg, $type){
 
             if($type == 'success'){
-                $_SESSION = array(
-                    'msg' => '<div class="success">' . $msg . '</div>'
-                );
+                $_SESSION['msg'] = '<div class="success">' . $msg . '</div>';
             }elseif($type == 'warning'){
-                $_SESSION = array(
-                    'msg' => '<div class="warning">' . $msg . '</div>'
-                );
+                $_SESSION['msg'] = '<div class="warning">' . $msg . '</div>';
+
             }elseif($type == 'alert'){
-                $_SESSION = array(
-                    'msg' => '<div class="alert">' . $msg . '</div>'
-                );
+                $_SESSION['msg'] = '<div class="alert">' . $msg . '</div>';
             }
         }
 

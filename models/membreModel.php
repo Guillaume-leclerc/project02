@@ -8,7 +8,7 @@ namespace models\membreModel{
 
         public function selectMembreByMail($email){
             $bdd = $this->getDatabase();
-            $req = "SELECT id_membre  , email FROM membre WHERE email = :email";
+            $req = "SELECT id_membre , civilite, nom, prenom, email, password, adresse, cp, ville, date_naissance, statut FROM membre WHERE email = :email";
             $requete = $bdd->prepare($req);
             $requete->bindValue(':email', $email);
             $requete->execute();
@@ -18,14 +18,13 @@ namespace models\membreModel{
             if($result){
                 return $result;
             }else{
-                return false;
+                return $result;
             }
         }
-
-
+        //*********************************************************
         public function addMembre($tab){
             $bdd = $this->getDatabase();
-            $req = "INSERT INTO membre(civilite, nom, prenom, email, password, adresse, cp, ville, date_naissance) VALUES (:civilite, :nom, :prenom, :email, :password, :adresse, :cp, :ville, :date_naissance)";
+            $req = "INSERT INTO membre(civilite, nom, prenom, email, password, adresse, cp, ville, date_naissance, statut) VALUES (:civilite, :nom, :prenom, :email, :password, :adresse, :cp, :ville, :date_naissance, 0)";
             $requete = $bdd->prepare($req);
             $requete->bindValue(':civilite', $tab['civilite']);
             $requete->bindValue(':nom', $tab['nom']);
@@ -40,8 +39,9 @@ namespace models\membreModel{
 
             return $result;
         }
-
+        //*********************************************************
     }
 }
+
 
 

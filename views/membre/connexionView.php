@@ -4,12 +4,12 @@
     <div class="marginTop20">
         <div class="blocLeft510x300_border">
             <h3 class="titreH3">Connectez-vous !</h3>
-            <form action="<?php echo \controllers\superController\superController::URL . 'membre/compte' ?>" method="post" class="formConnexion">
+            <form action="http://localhost/quad/public/routeur.php?c=membre&a=connexion" method="post" class="formConnexion">
                 <label for="email" class="formConnexionLabel">Email</label>
                 <input type="email" name="email" id="email" required placeholder="exemple@mail.fr" class="formConnexionInput" />
                 <label for="password" class="formConnexionLabel">Password</label>
                 <input type="password" name="password" id="password" required class="formConnexionInput" />
-                <a href="<?php echo \controllers\superController\superController::URL . 'membre/password'; ?>">Mot de passe oublié ?</a>
+
                 <input type="submit" name="bntFormConnexion" value="Connexion" class="formConnexionBtnValid" />
             </form>
         </div>
