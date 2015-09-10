@@ -37,7 +37,9 @@
 
     <?php
 
-        echo $_SESSION['msg'];
+        if(isset($_SESSION['msg']) && !empty($_SESSION['msg'])){
+            echo $_SESSION['msg'];
+        }
         echo $content;
 
     ?>

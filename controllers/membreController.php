@@ -35,20 +35,24 @@ namespace controllers\membreController{
                     // Si le pass enregistrer en bdd est identique a la variable $hash alors je charge la session
                     if($result[0]['password'] == $hash){
 
-                        $_SESSION['user'] = array(
-                            'id_membre' => $result[0]['id_membre'],
-                            'civilite' => $result[0]['civilite'],
-                            'nom' => $result[0]['nom'],
-                            'prenom' => $result[0]['prenom'],
-                            'email' => $result[0]['email'],
-                            'adresse' => $result[0]['adresse'],
-                            'cp' => $result[0]['cp'],
-                            'ville' => $result[0]['ville'],
-                            'date_naissance' => $result[0]['date_naissance']
+                        $_SESSION = array(
+                            'user' => array(
+                                'id_membre' => $result[0]['id_membre'],
+                                'civilite' => $result[0]['civilite'],
+                                'nom' => $result[0]['nom'],
+                                'prenom' => $result[0]['prenom'],
+                                'email' => $result[0]['email'],
+                                'adresse' => $result[0]['adresse'],
+                                'cp' => $result[0]['cp'],
+                                'ville' => $result[0]['ville'],
+                                'date_naissance' => $result[0]['date_naissance']
+                            )
                         );
 
                         $msg = "Bienvenue " . $_SESSION['user']['prenom'] . " !";
                         $this->setMsg($msg, 'success');
+
+                        header('location:'. \controllers\superController\superController::URL .'routeur.php?c=membre&a=compte');
                     }else{
                         $msg = "Mot de passe incorrect!";
                         $this->setMsg($msg, 'alert');

@@ -25,12 +25,13 @@ namespace controllers\superController{
         public function start(){
             session_start();
 
-            $_SESSION = array(
-                'msg' => '',
-                'user' => '',
-                'panier' => ''
-            );
-
+            if(!isset($_SESSION['msg']) && !isset($_SESSION['user']) && !isset($_SESSION['panier'])){
+                $_SESSION = array(
+                    'msg' => '',
+                    'user' => '',
+                    'panier' => ''
+                );
+            }
         }
 
         // Fonction qui permet de stocker le message d'état ainsi que sont type (success, warning, alert)
@@ -40,7 +41,6 @@ namespace controllers\superController{
                 $_SESSION['msg'] = '<div class="success">' . $msg . '</div>';
             }elseif($type == 'warning'){
                 $_SESSION['msg'] = '<div class="warning">' . $msg . '</div>';
-
             }elseif($type == 'alert'){
                 $_SESSION['msg'] = '<div class="alert">' . $msg . '</div>';
             }
