@@ -73,10 +73,6 @@ header div a{
     background-color: #d75b00;
 }
 
-.sousMenuPrincipal{
-
-}
-
 .niveauInfSousMenu{
     display: none;
 }
@@ -89,6 +85,67 @@ header div a{
     opacity: 0.5;
     position: relative;
 }
+
+.sousMenuCompte{
+    display: block !important;
+    width: 200px !important;
+    padding-left: 0 !important;
+    height: 42px;
+}
+
+.sousMenuCompte:hover{
+    background-color: #d75b00 ;
+}
+
+.sousMenuCompte img{
+    float: left;
+}
+
+.sousMenuCompte a{
+    width: 100px !important;
+    float: left;
+    font-size: 1em !important;
+    margin-top: -3px;
+}
+
+.sousMenuCompte a:hover{
+    background-color: transparent !important;
+}
+
+.sousMenuComtpeTdLogo{
+    width: 40px;
+}
+
+.sousMenuComtpeTdLogo img{
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* Menu déroulant mon compte*/
+ul.sousMenuCompteNivInf{
+    display: none !important;
+}
+
+ul.sousMenuCompteNivInf{
+    width: 200px;
+    color: darkgray;
+}
+
+ul.sousMenuCompteNivInf li a{
+    background-color: #353535 !important;
+    margin-left: 0px !important;
+    width: 200px !important;
+    margin-left: -40px !important;
+}
+
+ul.sousMenuCompteNivInf li a:hover{
+    background-color: #fc730e !important;
+}
+
+li.sousMenuCompte:hover ul.sousMenuCompteNivInf{
+    display: block !important;
+}
+/**************************/
 
 .zoneSlider{
     width: 1024px;
@@ -510,4 +567,60 @@ footer{
     background-color: #fcf8e3;
     border: 1px solid #8a6d3b;
     border-radius: 5px;
+}
+
+.monCompteHorizontal{
+    width: 80%;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.monCompteVertical{
+    width: 50%;
+    height: 150px;
+    float: left;
+}
+
+.monCompteVertical h3{
+    color: #fc730e ;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 10px;
+    text-decoration: underline;
+}
+
+.monCompteVertical table{
+    margin-left: 10px;
+}
+
+.monCompteVertical table tr td{
+    color: #353535;
+    font-family: Arial, Helvetica, sans-serif;
+    font-family: 0,4em !important;
+}
+
+.monCompteBlocBas{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.monCompteBlocBas h3{
+    color: #fc730e ;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 10px;
+    text-decoration: underline;
+}
+
+.monCompteBlocBas table{
+    margin-left: 10px;
+}
+
+.monCompteBlocBas table tr td{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #353535;
+}
+
+.modifMail{
+    font-size: 0.8em;
 }

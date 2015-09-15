@@ -16,72 +16,86 @@ namespace controllers\membreController{
         public function connexion(){
             $this->start();
 
-            // Si le formulaire de connexion a été valider alors:
-            if(isset($_POST['bntFormConnexion']) && $_POST['bntFormConnexion'] == 'Connexion'){
-                include('..' . DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARATOR . 'membreModel.php');
-                // je crée l'objet membreModel et je requete avec l'adresse email en argument
-                $objMembreModel = new membreModel();
-                $result = $objMembreModel->selectMembreByMail($_POST['email']);
+            // si l'utilisateur n'est pas connecter alors on le laisse faire sinon on le renvoi vers son compte en lui affichant un message lui disant qu'il est deja loger
+            if($this->isConnected() == false) {
+                // Si le formulaire de connexion a été valider alors:
+                if(isset($_POST['bntFormConnexion']) && $_POST['bntFormConnexion'] == 'Connexion'){
+                    include('..' . DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARATOR . 'membreModel.php');
+                    // je crée l'objet membreModel et je requete avec l'adresse email en argument
+                    $objMembreModel = new membreModel();
+                    $result = $objMembreModel->selectMembreByMail($_POST['email']);
 
-                // Si un resultat est renvoyer alors je passe au traitement de la données
-                if($result){
+                    // Si un resultat est renvoyer alors je passe au traitement de la données
+                    if($result){
 
-                    // Je concatène mon grain de sel a mon password puis je hash le tous
-                    $salt = "92831bca88ed1e80b8e3ac8f76bdaa9309e6f089";
-                    $chaine = $salt . $_POST['password'];
+                        // Je concatène mon grain de sel a mon password puis je hash le tous
+                        $salt = "92831bca88ed1e80b8e3ac8f76bdaa9309e6f089";
+                        $chaine = $salt . $_POST['password'];
 
-                    $hash = sha1($chaine);
+                        $hash = sha1($chaine);
 
-                    // Si le pass enregistrer en bdd est identique a la variable $hash alors je charge la session
-                    if($result[0]['password'] == $hash){
+                        // Si le pass enregistrer en bdd est identique a la variable $hash alors je charge la session
+                        if($result[0]['password'] == $hash){
 
-                        $_SESSION = array(
-                            'user' => array(
-                                'id_membre' => $result[0]['id_membre'],
-                                'civilite' => $result[0]['civilite'],
-                                'nom' => $result[0]['nom'],
-                                'prenom' => $result[0]['prenom'],
-                                'email' => $result[0]['email'],
-                                'adresse' => $result[0]['adresse'],
-                                'cp' => $result[0]['cp'],
-                                'ville' => $result[0]['ville'],
-                                'date_naissance' => $result[0]['date_naissance']
-                            )
-                        );
+                            $_SESSION = array(
+                                'user' => array(
+                                    'id_membre' => $result[0]['id_membre'],
+                                    'civilite' => $result[0]['civilite'],
+                                    'nom' => $result[0]['nom'],
+                                    'prenom' => $result[0]['prenom'],
+                                    'email' => $result[0]['email'],
+                                    'adresse' => $result[0]['adresse'],
+                                    'cp' => $result[0]['cp'],
+                                    'ville' => $result[0]['ville'],
+                                    'date_naissance' => $result[0]['date_naissance']
+                                )
+                            );
 
-                        $msg = "Bienvenue " . $_SESSION['user']['prenom'] . " !";
-                        $this->setMsg($msg, 'success');
+                            $msg = "Bienvenue " . $_SESSION['user']['prenom'] . " !";
+                            $this->setMsg($msg, 'success');
 
-                        header('location:'. \controllers\superController\superController::URL .'routeur.php?c=membre&a=compte');
+                            header('location:'. \controllers\superController\superController::URL .'routeur.php?c=membre&a=compte');
+                        }else{
+                            $msg = "Mot de passe incorrect!";
+                            $this->setMsg($msg, 'alert');
+                        }
                     }else{
-                        $msg = "Mot de passe incorrect!";
+                        $msg = "Email innexistant";
                         $this->setMsg($msg, 'alert');
                     }
-
-                }else{
-                    echo 'result envoi false';
-                    $msg = "Email innexistant";
-                    $this->setMsg($msg, 'alert');
                 }
+                $tab = array(
+                    'directoryView' => 'membre',
+                    'fileView' => 'connexionView.php'
+                );
+
+                $this->render($tab);
+            }else {
+                $this->setMsg('Vous êtes déjà connectez', 'warning');
+                header('location:' . superController::URL . 'routeur.php?c=membre&a=compte');
             }
-
-            $tab = array(
-                'directoryView' => 'membre',
-                'fileView' => 'connexionView.php'
-            );
-
-            $this->render($tab);
         }
         //**********************************************************************************
         public function compte(){
             $this->start();
 
-            $tab = array(
-                'directoryView' => 'membre',
-                'fileView' => 'compteView.php'
-            );
+            if($this->isConnected()) {
 
-            $this->render($tab);
+                $tab = array(
+                    'directoryView' => 'membre',
+                    'fileView' => 'compteView.php',
+                    'user' => $_SESSION['user']
+                );
+
+                $this->render($tab);
+                // Si un message venant d'un autre page ou action doit être afficher alors le message est afficher sur cet page puis la variable est vider lorsque que l'ont passe sur une autre page.
+                if(isset($_SESSION['msg']) && !empty($_SESSION['msg'])){
+                    $_SESSION['msg'] = '';
+                }
+            }else{
+                $this->setMsg('Merci de vous connectez pour acceder à votre compte', 'alert');
+                header('location:' . superController::URL . 'routeur.php?c=membre&a=connexion');
+            }
         }
         //**********************************************************************************
         public function inscription(){
@@ -188,8 +202,16 @@ namespace controllers\membreController{
             );
 
             $this->render($tab);
-
         }
         //**********************************************************************************
+
+        public function deconnexion(){
+            $this->start();
+
+            session_destroy();
+
+            header('location:'. \controllers\superController\superController::URL .'routeur.php?c=site&a=index');
+
+        }
     }
 }

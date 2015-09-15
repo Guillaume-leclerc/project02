@@ -20,8 +20,8 @@ namespace controllers\superController{
             ob_end_clean(); //vidage de la memoire (Reset de l'outpout buffering)
             include('..' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'layout.php');
         }
-
-        // Fonction qui permet d'initialiser les chose commune a chaque page.
+        //****************************************************
+        // Methode qui permet d'initialiser les chose commune a chaque page.
         public function start(){
             session_start();
 
@@ -33,8 +33,8 @@ namespace controllers\superController{
                 );
             }
         }
-
-        // Fonction qui permet de stocker le message d'état ainsi que sont type (success, warning, alert)
+        //****************************************************
+        // Methode qui permet de stocker le message d'état ainsi que sont type (success, warning, alert)
         public function setMsg($msg, $type){
 
             if($type == 'success'){
@@ -45,10 +45,19 @@ namespace controllers\superController{
                 $_SESSION['msg'] = '<div class="alert">' . $msg . '</div>';
             }
         }
-
+        //****************************************************
         public function getMsg(){
             echo $_SESSION['msg'];
         }
-
+        //****************************************************
+        // Methode qui test si l'utilisateur est connecter
+        public function isConnected(){
+            if(isset($_SESSION['user']['email']) && !empty($_SESSION['user']['email'])){
+                return true;
+            }else {
+                return false;
+            }
+        }
+        //****************************************************
     }
 }
