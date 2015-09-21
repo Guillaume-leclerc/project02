@@ -59,5 +59,22 @@ namespace controllers\superController{
             }
         }
         //****************************************************
+        //Méthode qui test si l'utilisateur est Admin
+        public function isAdmin(){
+            if($this->isConnected() && $_SESSION['user']['statut'] == "1"){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        //****************************************************
+        // Si un message venant d'un autre page ou action doit être afficher alors le message est afficher sur cet page puis la variable est vider lorsque que l'ont passe sur une autre page.
+        public function clearMsg(){
+            if(isset($_SESSION['msg']) && !empty($_SESSION['msg'])){
+                $_SESSION['msg'] = '';
+            }
+        }
+        //****************************************************
+
     }
 }

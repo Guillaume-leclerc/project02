@@ -19,43 +19,60 @@
     </header>
     <nav class="zoneMenu">
         <div class="menu">
-            <ul class="menuPrincipal">
-                <li><a href=" <?php echo \controllers\superController\superController::URL . 'routeur.php?c=site&a=index' ?>">Accueil</a></li>
-                <li class="sousMenuPrincipal">
-                    <a href="">Boutique</a>
-                    <!--<ul class="niveauInfSousMenu">
-                        <li>toto</li>
-                    </ul>-->
-                </li>
-                <li><a href="">Blog</a></li>
-                <li><a href="">Contact</a></li>
-
-
-
-
-                <li>
-                    <?php
-                    if(isset($_SESSION['user']['email']) && !empty($_SESSION['user']['email'])){
-                        echo "<li class='sousMenuCompte'>";
-                        echo "    <table>";
-                        echo "        <tr>";
-                        echo "            <td class='sousMenuCompteTdLogo'><img src=\"". controllers\superController\superController::URL ."img/icon_profil.png\" alt='icon_profil'></td>";
-                        echo "            <td><a href='#'>Mon compte</a></td>";
-                        echo "            <td><img src='" . controllers\superController\superController::URL . "img/icon_down.png' alt='icon_down'></td>";
-                        echo "        </tr>";
-                        echo "    </table>";
-                        echo "    <div class='clear'></div>";
-                        echo "    <ul class='sousMenuCompteNivInf'>";
-                        echo "        <li><a href='" . \controllers\superController\superController::URL . "routeur.php?c=membre&a=compte'>Coordonnées</a></li>";
-                        echo "        <li><a href='" . \controllers\superController\superController::URL . "routeur.php?c=membre&a=deconnexion'>Déconnexion</a></li> ";
-                        echo "    </ul>";
-                        echo "</li>";
-                        }else{
-                            echo "<a href='" . \controllers\superController\superController::URL . "routeur.php?c=membre&a=connexion'>Connexion</a>";
-                        }
-                    ?>
-                    </li>
-            </ul>
+            <?php
+            if($this->isAdmin()){
+                echo "<ul class='menuPrincipal'>";
+                echo "    <li><a href='" . \controllers\superController\superController::URL . "routeur.php?c=admin&a=boutique'>Gestion boutique</a></li>";
+                echo "    <li><a href=''>Commandes</a></li>";
+                echo "    <li><a href=''>Newsletter</a></li>";
+                echo "    <li><a href=''>Clients</a></li>";
+                echo "    <li class='sousMenuCompte'>";
+                echo "        <table>";
+                echo "            <tr>";
+                echo "                <td class='sousMenuCompteTdLogo'><img src=\"". controllers\superController\superController::URL ."img/icon_profil.png\" alt='icon_profil'></td>";
+                echo "                <td><a href='#'>Mon compte</a></td>";
+                echo "                <td><img src='" . controllers\superController\superController::URL . "img/icon_down.png' alt='icon_down'></td>";
+                echo "            </tr>";
+                echo "        </table>";
+                echo "        <div class='clear'></div>";
+                echo "        <ul class='sousMenuCompteNivInf'>";
+                echo "            <li><a href='" . \controllers\superController\superController::URL . "routeur.php?c=membre&a=compte'>Coordonnées</a></li>";
+                echo "            <li><a href='" . \controllers\superController\superController::URL . "routeur.php?c=membre&a=deconnexion'>Déconnexion</a></li> ";
+                echo "        </ul>";
+                echo "    </li>";
+                echo "</ul>";
+            }elseif($this->isConnected()){
+                echo "<ul class='menuPrincipal'>";
+                echo "    <li><a href='" . \controllers\superController\superController::URL . "routeur.php?c=site&a=index'>Accueil</a></li>";
+                echo "    <li><a href=''>Boutique</a></li>";
+                echo "    <li><a href=''>Blog</a></li>";
+                echo "    <li><a href=''>contact</a></li>";
+                echo "    <li class='sousMenuCompte'>";
+                echo "        <table>";
+                echo "            <tr>";
+                echo "                <td class='sousMenuCompteTdLogo'><img src=\"". controllers\superController\superController::URL ."img/icon_profil.png\" alt='icon_profil'></td>";
+                echo "                <td><a href='#'>Mon compte</a></td>";
+                echo "                <td><img src='" . controllers\superController\superController::URL . "img/icon_down.png' alt='icon_down'></td>";
+                echo "            </tr>";
+                echo "        </table>";
+                echo "        <div class='clear'></div>";
+                echo "        <ul class='sousMenuCompteNivInf'>";
+                echo "            <li><a href='" . \controllers\superController\superController::URL . "routeur.php?c=membre&a=compte'>Coordonnées</a></li>";
+                echo "            <li><a href='" . \controllers\superController\superController::URL . "routeur.php?c=membre&a=deconnexion'>Déconnexion</a></li> ";
+                echo "        </ul>";
+                echo "    </li>";
+                echo "</ul>";
+                //}elseif(isset($_SESSION['user']['statut']) && $_SESSION['user']['statut'] == "1"){
+            }else{
+                echo "<ul class='menuPrincipal'>";
+                echo "    <li><a href='" . \controllers\superController\superController::URL . "routeur.php?c=site&a=index'>Accueil</a></li>";
+                echo "    <li><a href=''>Boutique</a></li>";
+                echo "    <li><a href=''>Blog</a></li>";
+                echo "    <li><a href=''>contact</a></li>";
+                echo "    <li><a href='" . \controllers\superController\superController::URL . "routeur.php?c=membre&a=connexion'>Connexion</a></li>";
+                echo "</ul>";
+            }
+            ?>
         </div>
     </nav>
 

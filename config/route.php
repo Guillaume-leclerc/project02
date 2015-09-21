@@ -16,5 +16,9 @@ $route = array(
         'inscription' => 'inscription',
         'compte' => 'compte',
         'deconnexion' => 'deconnexion'
+    ),
+    'admin' => array(
+        'boutique' => 'boutique',
+        'ajout-taille' => 'ajoutTaille'
     )
 );

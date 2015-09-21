@@ -47,7 +47,8 @@ namespace controllers\membreController{
                                     'adresse' => $result[0]['adresse'],
                                     'cp' => $result[0]['cp'],
                                     'ville' => $result[0]['ville'],
-                                    'date_naissance' => $result[0]['date_naissance']
+                                    'date_naissance' => $result[0]['date_naissance'],
+                                    'statut' => $result[0]['statut']
                                 )
                             );
 
@@ -72,7 +73,7 @@ namespace controllers\membreController{
                 $this->render($tab);
             }else {
                 $this->setMsg('Vous êtes déjà connectez', 'warning');
-                header('location:' . superController::URL . 'routeur.php?c=membre&a=compte');
+                header('location:' . \controllers\superController\superController::URL . 'routeur.php?c=membre&a=compte');
             }
         }
         //**********************************************************************************
@@ -88,13 +89,11 @@ namespace controllers\membreController{
                 );
 
                 $this->render($tab);
-                // Si un message venant d'un autre page ou action doit être afficher alors le message est afficher sur cet page puis la variable est vider lorsque que l'ont passe sur une autre page.
-                if(isset($_SESSION['msg']) && !empty($_SESSION['msg'])){
-                    $_SESSION['msg'] = '';
-                }
+
+                $this->clearMsg();
             }else{
                 $this->setMsg('Merci de vous connectez pour acceder à votre compte', 'alert');
-                header('location:' . superController::URL . 'routeur.php?c=membre&a=connexion');
+                header('location:' . \controllers\superController\superController::URL . 'routeur.php?c=membre&a=connexion');
             }
         }
         //**********************************************************************************

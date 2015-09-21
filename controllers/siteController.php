@@ -26,6 +26,7 @@ namespace controllers\siteController{
             );
 
             $this->render($tab);
+            $this->clearMsg();
         }
 
     }
