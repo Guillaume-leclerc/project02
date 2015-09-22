@@ -19,6 +19,9 @@ $route = array(
     ),
     'admin' => array(
         'boutique' => 'boutique',
-        'ajout-taille' => 'ajoutTaille'
+        'ajout-taille' => 'ajoutTaille',
+        'ajout-marque' => 'ajoutMarque',
+        'ajout-categorie' => 'ajoutCategorie',
+        'ajout-produit' => 'ajoutProduit'
     )
 );

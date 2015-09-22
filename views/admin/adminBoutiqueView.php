@@ -8,15 +8,15 @@
             <td class="tableauAdminBoutiqueDescriptif">Ajout de taille pour les vêtements, chaussures, bottes, casque, …</td>
         </tr>
         <tr>
-            <td class="tableauAdminBoutiqueLien"><a href="">Ajout d'une marque</a></td>
+            <td class="tableauAdminBoutiqueLien"><a href="<?php \controllers\superController\superController::URL ?>routeur.php?c=admin&a=ajout-marque">Ajout d'une marque</a></td>
             <td class="tableauAdminBoutiqueDescriptif">Ajouter une nouvelle marque au listing.</td>
         </tr>
         <tr>
-            <td class="tableauAdminBoutiqueLien"><a href="">Ajout d'une catégorie</a></td>
+            <td class="tableauAdminBoutiqueLien"><a href="<?php \controllers\superController\superController::URL ?>routeur.php?c=admin&a=ajout-categorie">Ajout d'une catégorie</a></td>
             <td class="tableauAdminBoutiqueDescriptif">Ajout de catégorie, exemple: casque, vêtement, …</td>
         </tr>
         <tr>
-            <td class="tableauAdminBoutiqueLien"><a href="">Ajout d'un produit</a></td>
+            <td class="tableauAdminBoutiqueLien"><a href="<?php controllers\superController\superController::URL ?>routeur.php?c=admin&a=ajout-produit">Ajout d'un produit</a></td>
             <td class="tableauAdminBoutiqueDescriptif">Ajout d'un produit en base. <br /> ATTENTION: Un produit n'est pas un article.</td>
         </tr>
         <tr>
