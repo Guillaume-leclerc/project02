@@ -11,7 +11,8 @@ namespace controllers\superController{
 
         //const URL = 'http://www.equip-quad.gldev.fr/';
         const URL = 'http://localhost/quad/public/';
-
+        const URL_PHOTO = 'htt://localhost/quad/public/photo/';
+        const URL_ENREGISTREMENT_PHOTO =  "/quad/public/photo/";
         protected function render($tab){
             extract($tab); // Extraction du tableau
             ob_start(); // Demarage de l'outpout buffering

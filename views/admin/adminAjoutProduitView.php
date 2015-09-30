@@ -1,9 +1,9 @@
 <div class="container">
     <h1 class="titreH1">Ajout d'un produit</h1>
     <div class="trait2px"></div>
-    <form action="<?php controllers\superController\superController::URL ?>routeur?php?c=admin&a=ajout-produit" method="post" enctype="multipart/form-data">
+    <form action="<?php controllers\superController\superController::URL ?>routeur.php?c=admin&a=ajout-produit" method="post" enctype="multipart/form-data">
         <label for="reference" class="labelAjout marginTop10">Référence:</label>
-        <input type="text" name="reference" id="reference" placeholder="Exemple: NS603-C" class="inputAjoutTaille marginTop10">
+        <input type="text" name="reference" id="reference" placeholder="Exemple: NS603-C, MINIMUM DE 3 CARACTERES" class="inputAjoutTaille marginTop10">
         <label for="categorie" class="labelAjout marginTop10">Catégorie:</label>
         <select id="categorie" name="categorie" class="selectAjoutForm">
         <?php

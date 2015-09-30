@@ -223,9 +223,9 @@ namespace controllers\adminController{
                             // on rajoute la reference sur le nom de la photo dans le cas où deux images auraient le même nom
                             $nom_photo = $_POST['reference'] . '_' . $_FILES['photo']['name'];
                             // chemin src ue l'on va enregistrer en BDD
-                            $photo = \controllers\superController\superController::URL . "photo/$nom_photo";
-
-                            copy($_FILES['photo']['tmp_name'], $photo);
+                            $photo = \controllers\superController\superController::URL_PHOTO . "photo/$nom_photo";
+                            $pictureDirectory = $_SERVER['DOCUMENT_ROOT'] . \controllers\superController\superController::URL_ENREGISTREMENT_PHOTO;
+                            copy($_FILES['photo']['tmp_name'], "/Applications/MAMP/htdocs/quad/public/photo/" . $nom_photo);
 
                         }else{
                             $msg = "L'extension de votre fichier n'est pas autorisé. Seul les fichier jpg, jpeg ou png sont autorisé.";
@@ -236,8 +236,69 @@ namespace controllers\adminController{
                     // Vérification & enregistrement des donnée en base.
 
                     // Vérification de l'intégrité des données categorie & marque
+                    // Si lest donnés corespondent, je concidère que l'utilisateur ne les as pas modifier donc c'est ok sinon message d'erreur in your face
+                    $resultCategorie = $objAdminModel->selectCategorieById($_POST['categorie']);
+                    $resultMarque = $objAdminModel->selectMarqueById($_POST['marque']);
 
-                    $resultCategorie = // TESTER AVEC LES 2 DERNI7RES FONCTIONS DE L OBJET ADMIN MODEL
+                    if($resultCategorie){
+
+                        if($resultMarque){
+                            if(strlen($_POST['reference']) >= 3){
+                                $reference = htmlentities($_POST['reference'], ENT_QUOTES);
+
+                                $resultRef = $objAdminModel->selectReferenceByName($reference);
+                                echo 'toto';
+                                // Si la reference existe alors je bloque le traitement et affiche un msg d'erreur
+                                if(!$resultRef){
+                                    if(strlen($_POST['designation']) >= 3){
+                                        $designation = htmlentities($_POST['designation'], ENT_QUOTES);
+
+                                        if($_POST['description'] != ''){
+
+                                            $description = htmlentities($_POST['description']);
+
+                                            $tabData = array(
+                                                'reference' => $_POST['reference'],
+                                                'designation' => $designation,
+                                                'description' => $description,
+                                                'marque_id' => $_POST['marque'],
+                                                'categorie_id' => $_POST['categorie'],
+                                                'photo' => $photo
+                                            );
+
+                                            $result = $objAdminModel->insertProduit($tabData);
+
+                                            if($result){
+                                                $msg = "Votre produit à bien été enregister.";
+                                                $this->setMsg($msg, 'success');
+                                            }else{
+                                                $msg = "Une erreur est survenur lors de l'enregistrement du produit.";
+                                                $this->setMsg($msg, 'alert');
+                                            }
+                                        }else{
+                                            $msg = "la description du produit est maquante.";
+                                            $this->setMsg($msg, 'alert');
+                                        }
+                                    }else{
+                                        $msg = "Votre designation doit contenir 3 caractère au minimum.";
+                                        $this->setMsg($msg, 'alert');
+                                    }
+                                }else{
+                                    $msg = "Votre référence est déjà existante en base.";
+                                    $this->setMsg($msg, 'alert');
+                                }
+                            }else{
+                                $msg = "Votre référence doit contenir 3 caractère au minimum.";
+                                $this->setMsg($msg, 'alert');
+                            }
+                        }else{
+                            $msg = "Cette marque n\'existe pas! Vérifier votre choix.";
+                            $this->setMsg($msg, 'alert');
+                        }
+                    }else{
+                        $msg = "Cette catégorie n\'existe pas! Vérifier votre choix.";
+                        $this->setMsg($msg, 'alert');
+                    }
 
 
 
@@ -262,6 +323,78 @@ namespace controllers\adminController{
                 header('location:' . \controllers\superController\superController::URL . 'routeur.php?c=site&a=index');
             }
         }
+        //***************************************************************************************
+        public function AjoutArticle(){
+            $this->start();
+
+            if($this->isAdmin()){
+
+                include('..' . DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARATOR . 'adminModel.php');
+
+                $objAdminModel = new adminModel();
+
+                if(isset($_POST['btnValidFormAjoutArticle']) && $_POST['btnValidFormAjoutArticle'] == "Enregistrer"){
+
+                    $idProduct = htmlentities($_POST['produit']);
+                    $verifRef = $objAdminModel->selectProductById($idProduct);
+
+                    //Si la ref entrante existe en base alors il n'y a pas de problème donc on continue sinon on affiche un message d'erreur.
+                    if($verifRef){
+
+                        $idTaille = htmlentities($_POST['taille']);
+                        $verifTaille = $objAdminModel->selectTailleById($idTaille);
+                        //Si la taille entrante existe en base alors il n'y a pas de problème donc on continue sinon on affiche un message d'erreur.
+                        if($verifTaille){
+
+                            if(!empty($_POST['quantite'])){
+                                $dataProduct = array(
+                                    'quantite' => htmlentities($_POST['quantite']),
+                                    'produit_id' => $idProduct,
+                                    'taille_id' => $idTaille
+                                );
+
+                                $result = $objAdminModel->addArticle($dataProduct);
+
+                                if($result){
+                                    $msg = "Votre produit à bien été enregistrer.";
+                                    $this->setMsg($msg, 'success');
+                                }else{
+                                    $msg = "Une erreur est survenue lors de l'enregistrement";
+                                    $this->setMsg($msg, 'alert');
+                                }
+                            }else{
+                                $msg = "Une quantité est obligatoire afin de procéder a l'enregistrement.";
+                                $this->setMsg($msg, 'alert');
+                            }
+                        }else{
+                            $msg = "Cette taille n'existe pas. Veuillez verifier vos produit.";
+                            $this->setMsg($msg, 'alert');
+                        }
+                    }else{
+                        $msg = "Cette rérérence n'existe pas. Veuillez verifier vos produit.";
+                        $this->setMsg($msg, 'alert');
+                    }
+                }
+
+                $tab = array(
+                    'directoryView' => 'admin',
+                    'fileView' => 'adminAjoutArticleView.php',
+                    'dataForm' => array(
+                        'produit' => $objAdminModel->selectAllProduct(),
+                        'taille' => $objAdminModel->selectAllTaille()
+                    )
+                );
+
+                $this->render($tab);
+                $this->clearMsg();
+            }else{
+                $msg = "Accès refusé !";
+                $this->setMsg($msg, 'alert');
+                header('location:' . \controllers\superController\superController::URL . 'routeur.php?c=site&a=index');
+            }
+        }
+        //***************************************************************************************
+
         //***************************************************************************************
     }
 }

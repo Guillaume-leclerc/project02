@@ -22,6 +22,7 @@ $route = array(
         'ajout-taille' => 'ajoutTaille',
         'ajout-marque' => 'ajoutMarque',
         'ajout-categorie' => 'ajoutCategorie',
-        'ajout-produit' => 'ajoutProduit'
+        'ajout-produit' => 'ajoutProduit',
+        'ajout-article' => 'ajoutArticle'
     )
 );

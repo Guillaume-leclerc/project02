@@ -1,8 +1,3 @@
-<pre>
-    <?php
-        //print_r($_SESSION);
-    ?>
-</pre>
 <!doctype html>
 <html lang="fr">
 <head>
